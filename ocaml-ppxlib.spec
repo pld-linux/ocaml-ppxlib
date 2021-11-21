@@ -11,7 +11,7 @@ Summary:	ppxlib - meta-programming for OCaml
 Summary(pl.UTF-8):	ppxlib - metaprogramowanie dla OCamla
 Name:		ocaml-ppxlib
 Version:	0.23.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0Download: https://github.com/ocaml-ppx/ppxlib/releases
