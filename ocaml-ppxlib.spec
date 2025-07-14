@@ -64,7 +64,7 @@ używających biblioteki ppxlib.
 
 %prep
 %setup -q -n ppxlib-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 dune build --verbose
