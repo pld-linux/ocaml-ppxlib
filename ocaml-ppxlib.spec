@@ -10,22 +10,24 @@
 Summary:	ppxlib - meta-programming for OCaml
 Summary(pl.UTF-8):	ppxlib - metaprogramowanie dla OCamla
 Name:		ocaml-ppxlib
-Version:	0.23.0
-Release:	3
+Version:	0.38.0
+Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://github.com/ocaml-ppx/ppxlib/releases
 Source0:	https://github.com/ocaml-ppx/ppxlib/releases/download/%{version}/ppxlib-%{version}.tbz
-# Source0-md5:	a318ed83e270780fd48eef1167d48c38
+# Source0-md5:	1db22b0a6dd8a590f3593628ead2f1fd
 Patch0:		%{name}-stdlib-shims.patch
 URL:		https://github.com/ocaml-ppx/ppxlib
 BuildRequires:	ocaml >= 1:4.04.1
-BuildRequires:	ocaml < 1:4.13
+BuildRequires:	ocaml-cmdliner-devel
 BuildRequires:	ocaml-dune >= 2.7
 BuildRequires:	ocaml-findlib-devel
 BuildRequires:	ocaml-ocaml-compiler-libs-devel >= 0.11.0
 BuildRequires:	ocaml-ppx_derivers-devel >= 1.0
+BuildRequires:	ocaml-re-devel
 BuildRequires:	ocaml-sexplib0-devel >= 0.12
+BuildRequires:	ocaml-yojson
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,7 +83,7 @@ cp -pr examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/ppxlib/*.ml
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/ppxlib/*/*.ml
 # packaged as %doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/ppxlib
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/ppxlib*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES.md HISTORY.md LICENSE.md README.md
+%attr(755,root,root) %{_bindir}/ppxlib-pp-ast
 %dir %{_libdir}/ocaml/ppxlib
 %{_libdir}/ocaml/ppxlib/META
 %{_libdir}/ocaml/ppxlib/*.cma
@@ -113,6 +116,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/ppxlib/traverse/*.cma
 %dir %{_libdir}/ocaml/ppxlib/traverse_builtins
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cma
+%dir %{_libdir}/ocaml/ppxlib/__private__
+%dir %{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/*.cma
+%dir %{_libdir}/ocaml/ppxlib-bench
+%{_libdir}/ocaml/ppxlib-bench/META
+%dir %{_libdir}/ocaml/ppxlib-tools
+%{_libdir}/ocaml/ppxlib-tools/META
 %if %{with ocaml_opt}
 %attr(755,root,root) %{_libdir}/ocaml/ppxlib/*.cmxs
 %attr(755,root,root) %{_libdir}/ocaml/ppxlib/ast/*.cmxs
@@ -159,6 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/ppxlib/traverse/*.cmt
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cmi
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cmt
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/.public_cmi
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/ppxlib/*.a
 %{_libdir}/ocaml/ppxlib/*.cmx
@@ -196,4 +207,8 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/ppxlib/dune-package
 %{_libdir}/ocaml/ppxlib/opam
+%{_libdir}/ocaml/ppxlib-bench/dune-package
+%{_libdir}/ocaml/ppxlib-bench/opam
+%{_libdir}/ocaml/ppxlib-tools/dune-package
+%{_libdir}/ocaml/ppxlib-tools/opam
 %{_examplesdir}/%{name}-%{version}
