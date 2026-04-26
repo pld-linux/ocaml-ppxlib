@@ -135,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ocaml/ppxlib/stdppx/*.cmxs
 %attr(755,root,root) %{_libdir}/ocaml/ppxlib/traverse/*.cmxs
 %attr(755,root,root) %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cmxs
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/*.cmxs
 %endif
 
 %files devel
@@ -204,6 +205,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.a
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cmx
 %{_libdir}/ocaml/ppxlib/traverse_builtins/*.cmxa
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/*.a
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/*.cmx
+%{_libdir}/ocaml/ppxlib/__private__/ppx_foo_deriver/*.cmxa
 %endif
 %{_libdir}/ocaml/ppxlib/dune-package
 %{_libdir}/ocaml/ppxlib/opam
