@@ -27,7 +27,7 @@ BuildRequires:	ocaml-ocaml-compiler-libs-devel >= 0.11.0
 BuildRequires:	ocaml-ppx_derivers-devel >= 1.0
 BuildRequires:	ocaml-re-devel
 BuildRequires:	ocaml-sexplib0-devel >= 0.12
-BuildRequires:	ocaml-yojson
+BuildRequires:	ocaml-yojson-devel
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
